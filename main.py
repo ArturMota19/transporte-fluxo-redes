@@ -23,4 +23,15 @@ class TransporteFluxo:
                         return True
         return False 
     
-    
+
+if __name__ == "__main__":
+    #Exemplo aleatório de uso
+    cidades = 6
+    transporte = TransporteFluxo(cidades)
+
+    # Adicionando rotas com capacidade
+    transporte.adicionaRotas(0, 1, 100)  
+    transporte.adicionaRotas(1, 2, 50)  
+    transporte.adicionaRotas(2, 3, 30)  
+    transporte.adicionaRotas(3, 4, 20) 
+    transporte.adicionaRotas(4, 5, 10) 
