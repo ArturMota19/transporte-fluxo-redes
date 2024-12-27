@@ -21,7 +21,31 @@ class TransporteFluxo:
                     pais[v] = u # marca o pai do vértice como u
                     if v == destino:
                         return True
-        return False 
+        return False
+      
+    def calcularFluxoMaximo(self, origem, destino): # calcula o fluxo máximo de origem para destino
+        pais = [-1] * self.V # cria um vetor de pais com o tamanho do número de cidades
+        fluxo_maximo = 0 # inicializa o fluxo máximo como 0
+
+        while self._dfs(origem, destino, pais): # enquanto existir um caminho de origem para destino
+            fluxo_caminho = float('Inf') # inicializa o fluxo do caminho como infinito
+            v = destino 
+            while v != origem:
+                u = pais[v] 
+                fluxo_caminho = min(fluxo_caminho, self.grafo[u][v]) # o fluxo do caminho é o mínimo entre o fluxo do caminho e a capacidade da aresta
+                v = pais[v] 
+
+            v = destino
+            while v != origem:
+                u = pais[v]
+                self.grafo[u][v] -= fluxo_caminho
+                self.grafo[v][u] += fluxo_caminho
+                v = pais[v]
+
+            fluxo_maximo += fluxo_caminho # o fluxo máximo é incrementado pelo fluxo do caminho
+
+        return fluxo_maximo
+
     
 
 if __name__ == "__main__":
@@ -35,3 +59,8 @@ if __name__ == "__main__":
     transporte.adicionaRotas(2, 3, 30)  
     transporte.adicionaRotas(3, 4, 20) 
     transporte.adicionaRotas(4, 5, 10) 
+    
+    origem = 0 
+    destino = 4
+
+    print(f"Fluxo máximo da origem ao destino: {transporte.calcularFluxoMaximo(origem, destino)}")
