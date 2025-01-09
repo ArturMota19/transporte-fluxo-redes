@@ -54,13 +54,16 @@ if __name__ == "__main__":
     transporte = TransporteFluxo(cidades)
 
     # Adicionando rotas com capacidade
-    transporte.adicionaRotas(0, 1, 100)  
-    transporte.adicionaRotas(1, 2, 50)  
-    transporte.adicionaRotas(2, 3, 30)  
-    transporte.adicionaRotas(3, 4, 20) 
-    transporte.adicionaRotas(4, 5, 10) 
+    transporte.adicionaRotas(0, 1, 20)  
+    transporte.adicionaRotas(0, 2, 30)  
+    transporte.adicionaRotas(1, 3, 30)  
+    transporte.adicionaRotas(1, 4, 10)  
+    transporte.adicionaRotas(2, 3, 10)  
+    transporte.adicionaRotas(2, 4, 10)  
+    transporte.adicionaRotas(3, 5, 20)  
+    transporte.adicionaRotas(4, 5, 30) 
     
     origem = 0 
-    destino = 4
+    destino = 5
 
     print(f"Fluxo máximo da origem ao destino: {transporte.calcularFluxoMaximo(origem, destino)}")
